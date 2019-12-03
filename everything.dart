@@ -1172,3 +1172,27 @@ class Counter with ChangeNotifier {
   }
 
 }
+
+//Mobile and Email launcher    url_launcher: ^5.2.5 packages
+//import 'package:url_launcher/url_launcher.dart';
+
+  _launchCaller() async{
+    var url="tel:+91 98002 01837";
+    if(await canLaunch(url)){
+      launch(url);   
+    } 
+    else{
+       print('cant launch this $url ');
+    }
+}
+  _launchEmail() async{
+    var url="mailto:sapkotagps@gmail.com";
+    if(await canLaunch(url)){
+      launch(url);   
+    } 
+    else{
+       print('cant launch this $url ');
+    }
+}
+
+
