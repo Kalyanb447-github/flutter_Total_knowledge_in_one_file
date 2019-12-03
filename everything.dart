@@ -1195,4 +1195,10 @@ class Counter with ChangeNotifier {
     }
 }
 
-
+//change statusbar appbar color
+void main() {
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    systemNavigationBarColor: Colors.blue, // navigation bar color
+    statusBarColor: Colors.pink, // status bar color
+  ));
+}
