@@ -1202,3 +1202,36 @@ void main() {
     statusBarColor: Colors.pink, // status bar color
   ));
 }
+//enable or dsable text using button and opasity
+ 1) bool _visible;
+ 2) @override
+  void initState() {
+    _visible = true;
+  }
+ 3) void _toggleVisible() {
+    setState(() {
+      _visible = !_visible;
+    });
+  }
+ 4)   new Opacity(opacity: _visible ? 1.0 : 0.2,
+            child: new Text('Now you see me now you don\'t!')),
+            new RaisedButton(onPressed: _toggleVisible, child: new Text('Toggle'),
+                  )
+  //Rotation box or container
+   1) int _turns;
+     double _value;
+   2)  @override
+  void initState() {
+    _turns = 0;
+    _value = 0.0;
+  }
+   3)  void _onChanged(double value) {
+    setState(() {
+      _value = value;
+      _turns = value.toInt();
+    });
+  }
+  4)  children: <Widget>[
+              new Slider(value: _value, onChanged: _onChanged, min: 0.0, max: 4.0,),
+              new RotatedBox(quarterTurns: _turns,
+              child: new Text('Hello World'),)
