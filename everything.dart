@@ -1235,3 +1235,20 @@ void main() {
               new Slider(value: _value, onChanged: _onChanged, min: 0.0, max: 4.0,),
               new RotatedBox(quarterTurns: _turns,
               child: new Text('Hello World'),)
+//How to change Icon
+step 1) change pubspac Dev dependency and flutter_ ixons address 
+dev_dependencies: 
+  flutter_launcher_icons: "^0.7.3"
+  
+flutter_icons:
+  android: "launcher_icon" 
+  ios: true
+  image_path: "assets/icon/icon.png"
+step 2)run this two commend 
+    flutter pub get
+    flutter pub run flutter_launcher_icons:main
+//make an apk file with this commend 43mb
+     flutter build apk 
+//make an app bundle file with this commend 10mb small size for release on play store
+     flutter build appbundle
+    
