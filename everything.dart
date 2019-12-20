@@ -1252,3 +1252,27 @@ step 2)run this two commend
 //make an app bundle file with this commend 10mb small size for release on play store
      flutter build appbundle
     
+//Google font useing pub
+   ->  google_fonts: ^0.2.0
+   ->  import 'package:google_fonts/google_fonts.dart';
+
+         Text(
+  'This is Google Fonts',
+  style: GoogleFonts.lato(),
+),
+
+//type 1
+Text(
+  'This is Google Fonts',
+  style: GoogleFonts.lato(
+    textStyle: TextStyle(color: Colors.blue, letterSpacing: .5),
+  ),
+),
+            Text(
+              'Handwriting',
+              // style: TextStyle(fontSize: 30),
+              style: GoogleFonts.ultra(
+                textStyle: TextStyle(
+                    color: Colors.blue, letterSpacing: .5, fontSize: 40),
+              ),
+            ),
