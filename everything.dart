@@ -1276,3 +1276,24 @@ Text(
                     color: Colors.blue, letterSpacing: .5, fontSize: 40),
               ),
             ),
+//Make Random color in Circle avetor
+    setp 1 ->
+      List<MaterialColor> _color=[Colors.indigo,Colors.green,Colors.brown,Colors.purple,Colors.purple]; 
+    setp 2 ->
+        return ListView.builder(
+         itemCount: snapshot.data.length,
+          itemBuilder: (context,index){
+            MaterialColor myColor=_color[index % _color.length];
+            return Card(
+              elevation: 10.0,
+              child: ListTile(
+                leading: CircleAvatar(
+                  backgroundColor: myColor,
+                  foregroundColor: Colors.white,
+                child: Text(snapshot.data[index]['id'].toString()),
+
+                ),
+                title: Text(snapshot.data[index]['company']['name'].toString()),
+              ),
+            );
+          },
