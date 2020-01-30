@@ -1297,3 +1297,60 @@ Text(
               ),
             );
           },
+          
+ //copyboard set data and get daata 
+          //import
+          import 'package:flutter/services.dart';
+
+          //set data
+           Clipboard.setData( ClipboardData(text: temp_word));
+          //  get data
+           Future<ClipboardData>  data =  Clipboard.getData('text/plain');
+           print(data.toString());
+          
+         // or  get data
+          Future<String> getClipBoardData() async {
+  ClipboardData data = await Clipboard.getData('text/plain');
+   return data.text;
+}
+
+              String data =await getClipBoardData();
+              
+              print(data);
+          
+ //snackbar
+          // setp 1:
+          final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+              // setp 2:
+             return Scaffold(
+       key: _scaffoldKey,
+      body: Container(
+          //step 3:
+            showInSnackBar('Message Sent');
+          //step 4:
+            void showInSnackBar(String value) {
+    _scaffoldKey.currentState.showSnackBar(new SnackBar(
+      backgroundColor: Colors.transparent,
+      duration: Duration(seconds: 1),
+      content: new Text(value)));
+       }
+          
+//Spliting of string 
+          void processTxtReceive(String temptxtReceive) {
+    if (temptxtReceive.contains('[') && temptxtReceive.contains(']')) {
+      setState(() {
+        tempUniqueNumber = temptxtReceive.substring(
+            temptxtReceive.indexOf('[') + 1, temptxtReceive.indexOf(']'));
+        if (tempUniqueNumber == unique_number) {
+          tempUniqueNumber = temptxtReceive.substring(
+              temptxtReceive.indexOf(']') + 1, temptxtReceive.length);
+          List<String> tempListOfButtonStatus = [];
+          tempListOfButtonStatus = tempUniqueNumber.split(',');
+          setFinalStatus(tempListOfButtonStatus);
+        }
+      });
+    }
+  }
+
+
+
