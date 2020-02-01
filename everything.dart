@@ -1352,5 +1352,66 @@ Text(
     }
   }
 
+//Loading dialoge login button click 
+        void _onLoading() {
+  showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (BuildContext context) {
+      return Dialog(
+        elevation: 10,
+        child: Container(
+          color: Colors.blue[300],
+          height: 150,
+          // decoration: BoxDecoration(
+          //    color: Colors.red,
+          //   borderRadius: BorderRadius.circular(10)
+          // ),
+          child: new Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+               Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                 children: <Widget>[
+                     new CircularProgressIndicator(),
+                     SizedBox(
+                       height: 30,
+                     ),
+              new Text("Loading... ",style: TextStyle(
+                color: Colors.white,
+              ),),
+                 ],
+               ),
+            ],
+          ),
+        ),
+      );
+    },
+  );
+  new Future.delayed(new Duration(seconds: 3), () {
+    // Navigator.pop(context); //pop dialog
+    // _login();
+      Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) =>PinCodeVerificationScreen(phoneNumber: '$mobile'),
+      ),
+    );
+  });
+  
+}
 
+  setAllData() async {
+    if (name != null && mobile != null) {
+      createFileFunction(
+          filename: fileName,
+          fileData: name + '\n' + mobile);
+    }
+_onLoading();
+    // Navigator.of(context).pushReplacement(
+    //   MaterialPageRoute(
+    //     builder: (context) =>PinCodeVerificationScreen(phoneNumber: '$mobile'),
+    //   ),
+    // );
+  }
 
