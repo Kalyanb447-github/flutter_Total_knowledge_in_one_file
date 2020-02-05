@@ -1414,4 +1414,8 @@ _onLoading();
     //   ),
     // );
   }
-
+//Random no for 4 integer
+        import 'dart:math';
+         static Random random = new Random();
+  static int randomNumber = random.nextInt(100000); // from 0 upto 9999 included
+  static String deviceIdentifier = '${randomNumber}/device';
