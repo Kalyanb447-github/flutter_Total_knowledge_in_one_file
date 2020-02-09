@@ -1419,3 +1419,33 @@ _onLoading();
          static Random random = new Random();
   static int randomNumber = random.nextInt(100000); // from 0 upto 9999 included
   static String deviceIdentifier = '${randomNumber}/device';
+        
+  //if back button pressed alert dialog appear
+         Future<bool> _onWillPop() {
+    return showDialog(
+      context: context,
+      child: new AlertDialog(
+        title: new Text('Are you sure?'),
+        content: new Text('Unsaved data will be lost.'),
+        actions: <Widget>[
+          new FlatButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: new Text('No'),
+          ),
+          new FlatButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            child: new Text('Yes'),
+          ),
+        ],
+      ),
+    ) ?? false;
+  }
+step :2
+         @override
+  Widget build(BuildContext context) {
+    return new WillPopScope(
+      onWillPop: _onWillPop,
+      child: new Scaffold(
+        appBar: new AppBar(
+          title: new Text(widget.title),
+        ),
