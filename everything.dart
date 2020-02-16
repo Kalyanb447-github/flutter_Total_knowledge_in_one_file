@@ -1485,3 +1485,30 @@ step :2
         itemCount: 9,
       ),
     );
+      
+  //shadow in container
+  Container(
+    height: 200.0,
+    decoration: new BoxDecoration(
+      color: Colors.orange,
+      boxShadow: [
+        new BoxShadow(blurRadius: 40.0)
+      ],
+      borderRadius: new BorderRadius.vertical(
+          bottom: new Radius.elliptical(
+              MediaQuery.of(context).size.width, 100.0)),
+    ),
+  ),   
+   //Rounded textfield     
+      new TextField(
+  decoration: new InputDecoration(
+      border: new OutlineInputBorder(
+        borderRadius: const BorderRadius.all(
+          const Radius.circular(10.0),
+        ),
+      ),
+      filled: true,
+      hintStyle: new TextStyle(color: Colors.grey[800]),
+      hintText: "Type in your text",
+      fillColor: Colors.white70),
+)
