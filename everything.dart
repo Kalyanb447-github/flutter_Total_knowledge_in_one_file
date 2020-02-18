@@ -1512,3 +1512,23 @@ step :2
       hintText: "Type in your text",
       fillColor: Colors.white70),
 )
+//find app install date
+        device_apps: ^1.0.9
+
+      import 'package:device_apps/device_apps.dart';
+import 'package:intl/intl.dart';
+  findAppInstAllDate()async{
+    Application app = await DeviceApps.getApp('com.example.smartify');
+    var milis=app.installTimeMilis;
+     var tempInstalledDate =  DateTime.fromMillisecondsSinceEpoch(milis);
+     try {
+       setState(() {
+          installedDate= DateFormat('yyyy-MM-dd').format(tempInstalledDate).toString()??'';
+    versionCode= app.versionName.toString() ?? '';
+       });
+           
+
+     } catch (e) {
+       print(e.toString());
+     }
+  }
