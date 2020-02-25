@@ -1532,3 +1532,41 @@ import 'package:intl/intl.dart';
        print(e.toString());
      }
   }
+     //Date Picker Time Picker and Duration Picker
+        TimeOfDay seduleForSwitchOn = TimeOfDay.now();
+  TimeOfDay seduleForSwitchOff = TimeOfDay.now();
+
+  Future<Null> selectDate(BuildContext context)async{
+    final DateTime picked=await showDatePicker(
+      context: context, initialDate: _date, firstDate: DateTime(2020), lastDate: DateTime(2030));
+      if (picked!=null && picked!=_date) {
+        setState(() {
+          _date=picked;
+        });
+      }
+  }
+      
+         Future<Null> selectTime(BuildContext context,{seduleForSwitch})async{
+    final TimeOfDay picked=await showTimePicker(
+      context: context,initialTime: seduleForSwitch);
+      if (picked!=null && picked!=seduleForSwitch) {
+        setState(() {
+          seduleForSwitchOn=picked;
+        });
+      }
+  }
+         selectTime(context,seduleForSwitch: seduleForSwitchOn);
+ Duration resultingDuration = await showDurationPicker(
+                          context: context,
+                          initialTime: new Duration(minutes: 5),
+                        );
+                        if (resultingDuration.toString().isNotEmpty &&
+                            resultingDuration != null) {
+                          setState(() {
+                            _duration = resultingDuration;
+
+                            allOnValueString =
+                                'Schedule time ${_duration.inMinutes} min';
+                            allOnShortValue = '2';
+                          });
+                        }
