@@ -1570,3 +1570,37 @@ import 'package:intl/intl.dart';
                             allOnShortValue = '2';
                           });
                         }
+      
+      //Sound on button Click
+    Step 1: add   audioplayers: ^0.14.0
+    Step 2:  assets:
+    - assets/audio/my_audio.mp3
+      Step 3:import 'package:audioplayers/audio_cache.dart';
+             import 'package:audioplayers/audioplayers.dart'; 
+      
+        AudioCache _audioCache;
+        @override
+  void initState() {
+    super.initState();
+    _audioCache = AudioCache(
+        prefix: "audio/",
+        fixedPlayer: AudioPlayer()..setReleaseMode(ReleaseMode.STOP));
+    // _audioCache = AudioCache( fixedPlayer: AudioPlayer()..setReleaseMode(ReleaseMode.STOP));
+
+  }
+       onTap: () {
+                      _audioCache.play('my_audio.mp3');
+                    }),
+    //turn On WiFI
+      wifi_iot: ^0.1.1
+
+    import 'package:wifi_iot/wifi_iot.dart';
+
+     WiFiForIoTPlugin.setEnabled(true);
+    //List Of all available
+    List<WifiNetwork> list; List
+        list = await WiFiForIoTPlugin.loadWifiList();
+    //connect to wifi
+      await WifiConnector.connectToWifi(
+                          ssid: ssid,password: passwordController.text);
+    
