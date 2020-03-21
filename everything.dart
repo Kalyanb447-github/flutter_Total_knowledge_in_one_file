@@ -1603,4 +1603,105 @@ import 'package:intl/intl.dart';
     //connect to wifi
       await WifiConnector.connectToWifi(
                           ssid: ssid,password: passwordController.text);
+//Create folder in External Storage
+import 'package:flutter/material.dart';
+import 'dart:async';
+
+import 'package:flutter/services.dart';
+import 'package:path_provider_ex/path_provider_ex.dart';
+import 'dart:io';
+
+import 'package:simple_permissions/simple_permissions.dart';
+//packages
+//  simple_permissions: ^0.1.9
+//  path_provider_ex:
+//Android mainfest 
+//  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+//   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+void main() => runApp(MyApp());
+
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  List<StorageInfo> _storageInfo = [];
+
+  @override
+  void initState() {
+    super.initState();
+    initPlatformState();
+    Timer(Duration(seconds: 2), () {
+      createFolder();
+    });
+  }
+
+  createFolder() async {
+    PermissionStatus permissionResult =
+        await SimplePermissions.requestPermission(
+            Permission.WriteExternalStorage);
+    if (permissionResult == PermissionStatus.authorized) {
+    //   Directory _appFile = Directory(_storageInfo[0].rootDir + '/MyTestFOlder');
+    // _appFile.create();
+
+     new Directory(_storageInfo[0].rootDir + '/MyKalyanFolder').create()
+    // The created directory is returned as a Future.
+    .then((Directory directory) {
+      print(directory.path);
+  });
+      // File ourTempFile = File(_appFile.path);
+      // print(ourTempFile.path);
+     // ourTempFile.create();
+      // code of read or write file in external storage (SD card)
+    }
+  }
+
+  // Platform messages are asynchronous, so we initialize in an async method.
+  Future<void> initPlatformState() async {
+    List<StorageInfo> storageInfo;
+    // Platform messages may fail, so we use a try/catch PlatformException.
+    try {
+      storageInfo = await PathProviderEx.getStorageInfo();
+    } on PlatformException {}
+
+    // If the widget was removed from the tree while the asynchronous platform
+    // message was in flight, we want to discard the reply rather than calling
+    // setState to update our non-existent appearance.
+    if (!mounted) return;
+
+    setState(() {
+      _storageInfo = storageInfo;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Plugin example app'),
+        ),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+                'Internal Storage root:\n ${(_storageInfo.length > 0) ? _storageInfo[0].rootDir : "unavailable"}\n'),
+            Text(
+                'Internal Storage appFilesDir:\n ${(_storageInfo.length > 0) ? _storageInfo[0].appFilesDir : "unavailable"}\n'),
+            Text(
+                'Internal Storage AvailableGB:\n ${(_storageInfo.length > 0) ? _storageInfo[0].availableGB : "unavailable"}\n'),
+            Text(
+                'SD Card root: ${(_storageInfo.length > 1) ? _storageInfo[1].rootDir : "unavailable"}\n'),
+            Text(
+                'SD Card appFilesDir: ${(_storageInfo.length > 1) ? _storageInfo[1].appFilesDir : "unavailable"}\n'),
+            Text(
+                'SD Card AvailableGB:\n ${(_storageInfo.length > 1) ? _storageInfo[1].availableGB : "unavailable"}\n'),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
     
