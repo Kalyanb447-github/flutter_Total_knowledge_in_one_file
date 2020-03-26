@@ -1703,5 +1703,34 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
+//page transiction nice ounchind page transmission
+        Navigator.of(context).push(
+                          PageRouteBuilder(
+                            transitionDuration: Duration(seconds: 1),
+                            transitionsBuilder: (BuildContext context,
+                                Animation<double> animation,
+                                Animation<double> secAnimation,
+                                Widget child) {
+                                  animation=CurvedAnimation(parent: animation, curve: Curves.elasticInOut);
+                              return ScaleTransition(
+                                alignment: Alignment.center,
+                                scale: animation,
+                                child: child,
+                              );
+                            },
+                            pageBuilder: (BuildContext context,
+                                Animation<double> animation,
+                                Animation<double> secAnimation) {
+                              return MainScreen(
+                                database: _database,
+                                listOfLocationId: widget.listOfLocationId,
+                                //   deviceNameList:deviceNameList[i],
+                                deviceNameListId:
+                                    deviceNameList[i].toString() ?? '',
+                                deviceNameListString:
+                                    deviceNameListString[i] ?? '');
+                            })
+                            );
+ 
 
     
