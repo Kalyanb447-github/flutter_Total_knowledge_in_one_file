@@ -1732,5 +1732,29 @@ class _MyAppState extends State<MyApp> {
                             })
                             );
  
+//Notification icon with number counter
+      badges: ^1.1.0
 
+    import 'package:badges/badges.dart';
+
+    IconButton(
+            icon: Badge(
+              badgeColor: Colors.orange,
+              toAnimate: false,
+              badgeContent: Text(
+                '${catalog.catalogs.length}',
+                style: TextStyle(
+                  fontSize: 12,
+                  color: Colors.white,
+                ),
+              ),
+              child: Icon(
+                Icons.delete_forever,
+                color: Colors.white,
+              ),
+            ),
+            onPressed: () {
+              catalogController.clearCatalogs();
+            },
+          ),
     
