@@ -1758,3 +1758,19 @@ class _MyAppState extends State<MyApp> {
             },
           ),
     
+//I phone time and date picker
+//CupertinoDatePicker time and date picker
+         Container(
+                          //  height: MediaQuery.of(context).copyWith().size.height ,
+                          height: 100,
+                          child: SizedBox.expand(
+                            child: CupertinoDatePicker(
+                              mode: CupertinoDatePickerMode.time,
+                              onDateTimeChanged: (time) {
+                                 setState(() {
+                                   setAcTime=time;
+                                 });
+                              },
+                              initialDateTime: DateTime.now(),
+                            ),
+                          ));
